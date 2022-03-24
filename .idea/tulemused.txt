@@ -1,0 +1,9 @@
+Anette;Aleksander;120
+Mari;Mati;20
+Kati;Karu;400
+Siil;Koer;70
+idk, ; idc;20
+pp;ll;77
+Mari;Karu;300
+Mari;Karu;300
+Mari;Karu;300
