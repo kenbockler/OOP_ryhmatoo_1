@@ -1,5 +1,6 @@
 import javax.swing.table.TableCellEditor;
 import java.security.spec.ECField;
+import java.sql.Time;
 import java.util.Arrays;
 
 /* Kokkulepped:
@@ -27,7 +28,7 @@ public class Tabel {
             this.ridu = ridu;
             this.veerge = veerge;
             this.sümboliteArvVõiduks = sümboliteArvVõiduks;
-
+            var x = System.currentTimeMillis();
             //Kui ridade ja veergude arv sobib, loome kahemõõtmelise massiivi
             looMängulaud();
 

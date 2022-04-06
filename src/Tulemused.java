@@ -8,12 +8,11 @@ public class Tulemused {
 
     //loe failist/salvestab faili tulemused kujul "võitja;kaotaja;aeg"
     //failis kujul võitja;kaotaja;aeg - 2 min sekundite kujul: 120
-
     public static List<Tulemus> loeFailist(String failinimi) throws IOException {
         List<Tulemus> tulemused = new ArrayList<>();
         File fail = new File(failinimi);
 
-        try(Scanner sc = new Scanner(fail, StandardCharsets.UTF_8)){
+        try (Scanner sc = new Scanner(fail, StandardCharsets.UTF_8)) {
             while (sc.hasNextLine()) {
                 String rida = sc.nextLine();
                 String[] andmed = rida.split(";");
@@ -32,18 +31,16 @@ public class Tulemused {
     //kus loeme kõik tulemuste failist ja lisame uue tulemuse 
     // juurde ja kirjutame tagasi tulemused
 
-    public static void kirjutaFaili(String failinimi,Tulemus tulemus)  {
+    public static void kirjutaFaili(String failinimi, Tulemus tulemus) {
         try {
             List<Tulemus> vanad = loeFailist(".idea/tulemused.txt");
             vanad.add(tulemus);
             FileWriter fw = new FileWriter(failinimi);
-            for (Tulemus tulem:vanad) {
-                fw.write(tulem.võitja+";"+ tulem.kaotaja+";"+tulem.aeg+"\n");
+            for (Tulemus tulem : vanad) {
+                fw.write(tulem.võitja + ";" + tulem.kaotaja + ";" + tulem.aeg + "\n");
             }
             fw.close();
-            System.out.println("Kirjutasid faili");
         } catch (IOException e) {
-            System.out.println("Tuli error!");
             e.printStackTrace();
         }
     }
@@ -52,9 +49,9 @@ public class Tulemused {
     public static List<String> tagastabViimased5() throws IOException {
 
         List<Tulemus> tulemused2 = loeFailist(".idea/tulemused.txt");
-        List<String> viimased= new ArrayList<>();
+        List<String> viimased = new ArrayList<>();
 
-        for (int i = tulemused2.size()-5; i < tulemused2.size(); i++) {
+        for (int i = tulemused2.size() - 5; i < tulemused2.size(); i++) {
             viimased.add(String.valueOf(tulemused2.get(i)));
         }
         return viimased;
@@ -68,4 +65,5 @@ public class Tulemused {
         Map<String, Integer[]> nimekiri = new HashMap<>();
         return 1;
     }
+
 }

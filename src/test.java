@@ -8,7 +8,20 @@ public class test {
         System.out.println(tulemused11);
         List<String> viimased5 = Tulemused.tagastabViimased5();
         System.out.println(viimased5);
-        Tulemus tulemusproov = new Tulemus("Mari", "Karu", "300");
+
+        //mäng käima
+        Ajavõtt aeg = new Ajavõtt(); //paneb aja tööle
+
+        //siin toimub mängimine
+
+        //mängu lõpp
+        // String aeg = aeg.kinni(); paneb aja kinni
+        //teeme tulemuse
+        Tulemus tulemusproov = new Tulemus("Mari", "Karu", aeg.kinni());
+
+        //salvestame faili
         Tulemused.kirjutaFaili(".idea/tulemused.txt", tulemusproov);
+
+
     }
 }
