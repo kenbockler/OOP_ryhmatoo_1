@@ -27,13 +27,16 @@ public class Tulemused {
         return tulemused;
     }
 
-    //meetod kirjutafaili
-    //kus loeme kõik tulemuste failist ja lisame uue tulemuse 
-    // juurde ja kirjutame tagasi tulemused
-
+    /**
+     * meetod kirjutafaili kus loeme kõik tulemuste failist
+     * ja lisame uue tulemuse juurde ja kirjutame tagasi tulemused
+     *
+     * @param failinimi failinimi kuhu kirjutada tahame
+     * @param tulemus   tulemus mida tahame kirjutada faili
+     */
     public static void kirjutaFaili(String failinimi, Tulemus tulemus) {
         try {
-            List<Tulemus> vanad = loeFailist(".idea/tulemused.txt");
+            List<Tulemus> vanad = loeFailist("tulemused.txt");
             vanad.add(tulemus);
             FileWriter fw = new FileWriter(failinimi);
             for (Tulemus tulem : vanad) {
@@ -45,25 +48,43 @@ public class Tulemused {
         }
     }
 
-    //meetod mis tagastab viimased 5 tulemust, viimane on kõige hiljutisem mängija
+    /**
+     * @return tagastab viimased  5 tulemust kus,
+     * viimane tulemus on kõige hiljutisem mängija
+     * @throws IOException
+     */
     public static List<String> tagastabViimased5() throws IOException {
-
-        List<Tulemus> tulemused2 = loeFailist(".idea/tulemused.txt");
+        List<Tulemus> tulemused2 = loeFailist("tulemused.txt");
         List<String> viimased = new ArrayList<>();
-
         for (int i = tulemused2.size() - 5; i < tulemused2.size(); i++) {
             viimased.add(String.valueOf(tulemused2.get(i)));
         }
         return viimased;
     }
 
-    //meetod mis tagastab iga mängija võitude ja kaotuste arvu
-    //ei ole lõpetatud
+    /**
+     * Sisestada mängija nimi et tema võite ja kaotusi näha
+     * @return tagastab iga mängija võitude ja kaotuste arvu
+     * @throws IOException
+     */
 
-    public static int loeVõidudJaKaotused() throws IOException {
-        List<Tulemus> kõik = loeFailist(".idea/tulemused.txt");
-        Map<String, Integer[]> nimekiri = new HashMap<>();
-        return 1;
+    public static String loeVõidudJaKaotused(String nimi) throws IOException {
+        List<Tulemus> kõik = loeFailist("tulemused.txt");
+        Map<String, int[]> nimekiri = new HashMap<>();
+
+        for (int i = 0; i < kõik.size(); i++) {
+            String võitja = kõik.get(i).võitja;
+            if (nimekiri.containsKey(võitja)) {
+                nimekiri.put(võitja, new int[]{nimekiri.get(võitja)[0] + 1, nimekiri.get(võitja)[1]});
+            } else nimekiri.put(võitja, new int[]{1, 0});
+        }
+        for (int i = 0; i < kõik.size(); i++) {
+            String kaotaja = kõik.get(i).kaotaja;
+            if (nimekiri.containsKey(kaotaja)) {
+                System.out.println("kalla"+kaotaja);
+                nimekiri.put(kaotaja, new int[]{nimekiri.get(kaotaja)[0], nimekiri.get(kaotaja)[1] + 1});
+            } else nimekiri.put(kaotaja, new int[]{0, 1});
+        }
+        return nimi + ": võite= " + nimekiri.get(nimi)[0] + ", kaotusi= " + nimekiri.get(nimi)[1];
     }
-
 }

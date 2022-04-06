@@ -8,3 +8,5 @@ Mari;Karu;300
 Mari;Karu;300
 Mari;Karu;300
 Mari;Karu;300
+Karu;Mari;200
+Karu;Mari;300
