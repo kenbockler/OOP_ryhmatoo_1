@@ -40,15 +40,18 @@ public class PeaKlass {
             System.out.println("Vali koht sümbolile (1-9):");
             int mängija1Koht = s.nextInt();
             System.out.println(mängija1Koht);
+
+            Ajavõtt aeg = new Ajavõtt(); //paneb aja tööle
+
             // järgnev osa märgib sümboleid
-            while (mängija1Seis.contains(mängija1Koht) || mängija2Seis.contains(mängija1Koht)){
+            while (mängija1Seis.contains(mängija1Koht) || mängija2Seis.contains(mängija1Koht)) {
                 System.out.println("Koht on võetud! Sisestage õige koha peale!");
                 mängija1Koht = s.nextInt();
             }
-            märgiSümbol(tabel, mängija1Koht, "nimi1");
+            märgiSümbol(tabel, mängija1Koht, nimi1.getNimi(), nimi1,nimi2);
             väljastaTabel(tabel);
-            String tulemus = leiaVõitja();
-            if (tulemus.length() > 0){
+            String tulemus = leiaVõitja(nimi1);
+            if (tulemus.length() > 0) {
                 System.out.println(tulemus);
                 break;
             }
@@ -60,14 +63,14 @@ public class PeaKlass {
             int mängija2Koht = s2.nextInt();
             System.out.println(mängija2Koht);
             // järgnev osa märgib sümboleid
-            while (mängija1Seis.contains(mängija2Koht) || mängija2Seis.contains(mängija2Koht)){
+            while (mängija1Seis.contains(mängija2Koht) || mängija2Seis.contains(mängija2Koht)) {
                 System.out.println("Koht on võetud! Sisestage õige koha peale!");
                 mängija2Koht = s.nextInt();
             }
-            märgiSümbol(tabel, mängija2Koht, "nimi2");
+            märgiSümbol(tabel, mängija2Koht, nimi2.getNimi(), nimi1,nimi2);
             väljastaTabel(tabel);
-            String tulemus2 = leiaVõitja();
-            if (tulemus2.length() > 0){
+            String tulemus2 = leiaVõitja(nimi2);
+            if (tulemus2.length() > 0) {
                 System.out.println(tulemus2);
                 break;
             }
@@ -86,14 +89,14 @@ public class PeaKlass {
         } // for
     }// väljastaTabel
 
-    public static void märgiSümbol(String[][] tabel, int koht, String kasutaja) {
+    public static void märgiSümbol(String[][] tabel, int koht, String kasutaja, Mängija nimi1, Mängija nimi2) {
 
         String sümbol = "   ";
 
-        if (kasutaja.equals("nimi1")) {
+        if (kasutaja.equals(nimi1.getNimi())) {
             sümbol = " X ";
             mängija1Seis.add(koht);
-        } else if (kasutaja.equals("nimi2")) {
+        } else if (kasutaja.equals(nimi2.getNimi())) {
             sümbol = " O ";
             mängija2Seis.add(koht);
         }
@@ -112,15 +115,15 @@ public class PeaKlass {
 
     }//märgiSümbol
 
-    public static String leiaVõitja(){
-        List<Integer> ülemineRida = Arrays.asList(1,2,3);
-        List<Integer> keskmineRida = Arrays.asList(4,5,6);
-        List<Integer> alumineRida = Arrays.asList(7,8,9);
-        List<Integer> vasakVeerg = Arrays.asList(1,4,7);
-        List<Integer> keskmineVeerg = Arrays.asList(2,5,8);
-        List<Integer> paremVeerg = Arrays.asList(3,6,9);
-        List<Integer> risti1 = Arrays.asList(1,5,9);
-        List<Integer> risti2 = Arrays.asList(7,5,3);
+    public static String leiaVõitja(Mängija nimi) {
+        List<Integer> ülemineRida = Arrays.asList(1, 2, 3);
+        List<Integer> keskmineRida = Arrays.asList(4, 5, 6);
+        List<Integer> alumineRida = Arrays.asList(7, 8, 9);
+        List<Integer> vasakVeerg = Arrays.asList(1, 4, 7);
+        List<Integer> keskmineVeerg = Arrays.asList(2, 5, 8);
+        List<Integer> paremVeerg = Arrays.asList(3, 6, 9);
+        List<Integer> risti1 = Arrays.asList(1, 5, 9);
+        List<Integer> risti2 = Arrays.asList(7, 5, 3);
 
         List<List<Integer>> võit = new ArrayList<>();
         võit.add(ülemineRida);
@@ -133,10 +136,10 @@ public class PeaKlass {
         võit.add(risti2);
 
         for (List<Integer> a : võit) {
-            if(mängija1Seis.containsAll(a)) {
-                return "Mängija 1 võitis!";
+            if (mängija1Seis.containsAll(a)) {
+                return nimi.getNimi() + " võitis!";
             } else if (mängija2Seis.containsAll(a)) {
-                return "Mängija 2 võitis!";
+                return nimi.getNimi() + " võitis!";
             } else if (mängija1Seis.size() + mängija2Seis.size() == 9) {
                 return "Kumbiki ei võtnud, jooksite mõlemad tupikusse!";
             }
