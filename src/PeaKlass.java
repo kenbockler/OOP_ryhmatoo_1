@@ -36,7 +36,7 @@ public class PeaKlass {
         System.out.println("Teine mängija : " + sisend2 + ", sümbol: \"O\"");
         System.out.println();
 
-
+        Ajavõtt aeg = new Ajavõtt(); //paneb aja tööle
         while (true) {
             //Järgnev osa määrab ära kasutaja valiku, kuhu ta enda märgi sisestab:
             Scanner s = new Scanner(System.in);
@@ -44,7 +44,7 @@ public class PeaKlass {
             int mängija1Koht = s.nextInt();
             System.out.println(mängija1Koht);
 
-            Ajavõtt aeg = new Ajavõtt(); //paneb aja tööle
+
 
             // järgnev osa märgib sümboleid
             while (mängija1Seis.contains(mängija1Koht) || mängija2Seis.contains(mängija1Koht)) {
