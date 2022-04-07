@@ -6,11 +6,18 @@ import java.util.*;
 
 public class Tulemused {
 
-    //loe failist/salvestab faili tulemused kujul "võitja;kaotaja;aeg"
-    //failis kujul võitja;kaotaja;aeg - 2 min sekundite kujul: 120
+    /**
+    loeb failist/salvestab faili tulemused kujul "võitja;kaotaja;aeg"
+    failis kujul võitja;kaotaja;aeg - 2 min sekundite kujul: 120
+     *
+     * @param failinimi sisestame kust failist loeme
+     * @return tagastame tulemuse järjendina
+     * @throws IOException
+     */
     public static List<Tulemus> loeFailist(String failinimi) throws IOException {
         List<Tulemus> tulemused = new ArrayList<>();
         File fail = new File(failinimi);
+
 
         try (Scanner sc = new Scanner(fail, StandardCharsets.UTF_8)) {
             while (sc.hasNextLine()) {
@@ -23,6 +30,7 @@ public class Tulemused {
                 Tulemus tulemus1 = new Tulemus(võitja, kaotaja, aeg);
                 tulemused.add(tulemus1);
             }
+
         }
         return tulemused;
     }
@@ -50,14 +58,27 @@ public class Tulemused {
 
     /**
      * @return tagastab viimased  5 tulemust kus,
-     * viimane tulemus on kõige hiljutisem mängija
+     * viimane tulemus on kõige hiljutisem mäng
      * @throws IOException
      */
     public static List<String> tagastabViimased5() throws IOException {
+
         List<Tulemus> tulemused2 = loeFailist("tulemused.txt");
         List<String> viimased = new ArrayList<>();
-        for (int i = tulemused2.size() - 5; i < tulemused2.size(); i++) {
+        if (tulemused2.size() == 0){
+            return viimased;
+        }
+
+        if (tulemused2.size()< 5){
+            for (int i = 0 ; i < tulemused2.size(); i++) {
+                viimased.add(String.valueOf(tulemused2.get(i)));
+            }
+
+        }
+        else{
+            for (int i = tulemused2.size() - 5; i < tulemused2.size(); i++) {
             viimased.add(String.valueOf(tulemused2.get(i)));
+            }
         }
         return viimased;
     }
