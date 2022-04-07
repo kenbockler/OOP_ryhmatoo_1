@@ -1,27 +1,18 @@
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class test {
 
+    /**
+     * lisaklass, kus saab proovida
+     * mängida trips-traps-trulli arvuti vastu
+     *
+     * peameetod
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
-        List<Tulemus> tulemused11 = Tulemused.loeFailist("tulemused.txt");
-        System.out.println(tulemused11);
-        List<String> viimased5 = Tulemused.tagastabViimased5();
-        System.out.println(viimased5);
-
-        //mäng käima
-        Ajavõtt aeg = new Ajavõtt(); //paneb aja tööle
-
-        //siin toimub mängimine
-
-        //mängu lõpp
-        // String aeg = aeg.kinni(); paneb aja kinni
-        //teeme tulemuse
-        Tulemus tulemusproov = new Tulemus("Mari", "Karu", aeg.kinni());
-
-        //salvestame faili
-        Tulemused.kirjutaFaili("tulemused.txt", tulemusproov);
-
         //klassi Tabel ja Kohtunik testimine
         System.out.println("---------------------");
         Scanner sc = new Scanner(System.in);
@@ -42,6 +33,5 @@ public class test {
             tripstrapstrull.kasRuutOnVaba(ruuduAsukoht,"X");
 
         }
-
     }
 }

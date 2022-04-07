@@ -30,7 +30,6 @@ public class Tulemused {
                 Tulemus tulemus1 = new Tulemus(võitja, kaotaja, aeg);
                 tulemused.add(tulemus1);
             }
-
         }
         return tulemused;
     }
@@ -68,12 +67,10 @@ public class Tulemused {
         if (tulemused2.size() == 0){
             return viimased;
         }
-
         if (tulemused2.size()< 5){
             for (int i = 0 ; i < tulemused2.size(); i++) {
                 viimased.add(String.valueOf(tulemused2.get(i)));
             }
-
         }
         else{
             for (int i = tulemused2.size() - 5; i < tulemused2.size(); i++) {
@@ -102,7 +99,7 @@ public class Tulemused {
         for (int i = 0; i < kõik.size(); i++) {
             String kaotaja = kõik.get(i).kaotaja;
             if (nimekiri.containsKey(kaotaja)) {
-                System.out.println("kalla"+kaotaja);
+                System.out.println(kaotaja);
                 nimekiri.put(kaotaja, new int[]{nimekiri.get(kaotaja)[0], nimekiri.get(kaotaja)[1] + 1});
             } else nimekiri.put(kaotaja, new int[]{0, 1});
         }

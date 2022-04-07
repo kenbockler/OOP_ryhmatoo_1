@@ -3,7 +3,6 @@ import java.util.concurrent.TimeUnit;
 public class Ajavõtt {
 
     private static long algusaeg;
-
     /**
      * ajavõtt võtab algusajaks selle aja,
      * millal meetod tööle pannakse
@@ -20,6 +19,5 @@ public class Ajavõtt {
         long praeguneaeg = System.currentTimeMillis();
         String aeg = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(praeguneaeg - algusaeg));
         return aeg;
-
     }
 }

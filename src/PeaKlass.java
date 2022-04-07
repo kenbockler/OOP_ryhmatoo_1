@@ -36,6 +36,8 @@ public class PeaKlass {
         System.out.println("Teine mängija : " + sisend2 + ", sümbol: \"O\"");
         System.out.println();
 
+        väljastaTabel(tabel);
+
         Ajavõtt aeg = new Ajavõtt(); //paneb aja tööle
         while (true) {
             //Järgnev osa määrab ära kasutaja valiku, kuhu ta enda märgi sisestab:
@@ -43,8 +45,6 @@ public class PeaKlass {
             System.out.println("Vali koht sümbolile (1-9):");
             int mängija1Koht = s.nextInt();
             System.out.println(mängija1Koht);
-
-
 
             // järgnev osa märgib sümboleid
             while (mängija1Seis.contains(mängija1Koht) || mängija2Seis.contains(mängija1Koht)) {
@@ -63,7 +63,6 @@ public class PeaKlass {
                 break;
             }
 
-
             //Teise mängija kohta: Järgnev osa määrab ära kasutaja valiku, kuhu ta enda märgi sisestab:
             Scanner s2 = new Scanner(System.in);
             System.out.println("Vali koht sümbolile (1-9):");
@@ -79,16 +78,23 @@ public class PeaKlass {
             String tulemus2 = leiaVõitja(nimi2);
             if (tulemus2.length() > 0) {
                 System.out.println(tulemus2);
-                aeg.kinni();
-                Tulemus tulemusproov = new Tulemus(nimi1.getNimi(), nimi2.getNimi(), aeg.kinni());
+                String aeg1 = aeg.kinni();
+                Tulemus tulemusproov = new Tulemus(nimi2.getNimi(), nimi1.getNimi(), aeg1);
                 //salvestame faili
                 Tulemused.kirjutaFaili("tulemused.txt", tulemusproov);
                 break;
             }
+            if (tulemus.length() >0){
+                System.out.println(tulemus);
+                String aeg2 = aeg.kinni();
+                Tulemus tulemusproov = new Tulemus(nimi1.getNimi(), nimi2.getNimi(), aeg2);
+                //salvestame faili
+                Tulemused.kirjutaFaili("tulemused.txt", tulemusproov);
+                break;
 
-
+            }
         }//while
-
+        System.out.println("Teil läks aega " + aeg + " sekundit.");
     }//main
 
     public static void väljastaTabel(String[][] näidisTabel) {
@@ -103,7 +109,6 @@ public class PeaKlass {
     public static void märgiSümbol(String[][] tabel, int koht, String kasutaja, Mängija nimi1, Mängija nimi2) {
 
         String sümbol = "   ";
-
         if (kasutaja.equals(nimi1.getNimi())) {
             sümbol = " X ";
             mängija1Seis.add(koht);
@@ -154,11 +159,7 @@ public class PeaKlass {
             } else if (mängija1Seis.size() + mängija2Seis.size() == 9) {
                 return "Kumbiki ei võtnud, jooksite mõlemad tupikusse!";
             }
-
-
         }
-
         return "";
     }
-
 }//PeaKlass
