@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +9,9 @@ public class PeaKlass {
     static ArrayList<Integer> mängija1Seis = new ArrayList<>();
     static ArrayList<Integer> mängija2Seis = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        List<Tulemus> tulemused11 = Tulemused.loeFailist("tulemused.txt");
+        System.out.println(tulemused11);
         // Järgnev on lihtsalt kasutajale visuaalseks ettekujutuseks, milline tabel välja näeb.
         String[][] tabel = {
                 {"   ", "|", "   ", "|", "   "},
@@ -53,6 +56,10 @@ public class PeaKlass {
             String tulemus = leiaVõitja(nimi1);
             if (tulemus.length() > 0) {
                 System.out.println(tulemus);
+                aeg.kinni();
+                Tulemus tulemusproov = new Tulemus(nimi1.getNimi(), nimi2.getNimi(), aeg.kinni());
+                //salvestame faili
+                Tulemused.kirjutaFaili("tulemused.txt", tulemusproov);
                 break;
             }
 
@@ -72,6 +79,10 @@ public class PeaKlass {
             String tulemus2 = leiaVõitja(nimi2);
             if (tulemus2.length() > 0) {
                 System.out.println(tulemus2);
+                aeg.kinni();
+                Tulemus tulemusproov = new Tulemus(nimi1.getNimi(), nimi2.getNimi(), aeg.kinni());
+                //salvestame faili
+                Tulemused.kirjutaFaili("tulemused.txt", tulemusproov);
                 break;
             }
 
